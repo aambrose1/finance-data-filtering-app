@@ -1,10 +1,10 @@
 ## finance-data-filtering-app
 
 # Installation instructions (Windows):
-` python -m venv .venv `
-` call .venv/Scripts/activate  `
-` pip install fastapi httpx uvicorn `
-` pip install "fastapi[standard] `
+` python -m venv .venv ` <br>
+` call .venv/Scripts/activate  ` <br>
+` pip install fastapi httpx uvicorn `<br>
+` pip install "fastapi[standard] `<br>
 
 Make sure your IDE is interpreting your selected environment.
 
