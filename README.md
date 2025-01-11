@@ -9,8 +9,8 @@
 ` cd react-fastapi/front-end/finance-app ` <br>
 ` npm install ` <br>
 ` npm install react-table ` <br>
-` npm install -D tailwindcss ` <br>
-` npx tailwindcss init ` <br>
+` npm install -D tailwindcss postcss autoprefixer` <br>
+` npx tailwindcss init -p` <br>
 
 Make sure your IDE is interpreting your selected environment.
 
