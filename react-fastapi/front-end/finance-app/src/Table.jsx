@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import * as React from "react";
-import {useState, useEffect, useMemo} from "react";
+import {useState, useEffect } from "react";
 import { useTable } from "react-table";
 
 function Table() {
