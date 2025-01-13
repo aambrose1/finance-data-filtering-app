@@ -10,7 +10,7 @@ function Table() {
     const [incomeFilterValues, setIncomeFilterValues] = useState({min: 0, max: 999999999999999})
 
     const fetchData = async () => {
-		const response = await fetch("http://127.0.0.1:8000/display_data/");
+		const response = await fetch("https://finance-data-filtering-app-mdk4.vercel.app/display_data/");
 		const APIdata = await response.json();
 		setStatements(APIdata);
 	};
@@ -20,7 +20,7 @@ function Table() {
 	}, []);
 
     const handleClick = async (value) => {
-        const response = await fetch(`http://127.0.0.1:8000/year/${value}`);
+        const response = await fetch(`https://finance-data-filtering-app-mdk4.vercel.app/year/${value}`);
 		const APIdata = await response.json();
         setStatements(APIdata);
     }
@@ -45,7 +45,7 @@ function Table() {
 
     useEffect(() => {
         const filterFun = async () => {
-           const response = await fetch("http://127.0.0.1:8000/filter_revenue/", {
+           const response = await fetch("https://finance-data-filtering-app-mdk4.vercel.app/filter_revenue/", {
             method: "POST", body: JSON.stringify(revenueFilterValues)
         });
         const APIdata = await response.json();
@@ -74,7 +74,7 @@ function Table() {
 
     useEffect(() => {
         const filterFun = async () => {
-           const response = await fetch("http://127.0.0.1:8000/filter_income/", {
+           const response = await fetch("https://finance-data-filtering-app-mdk4.vercel.app/filter_income/", {
             method: "POST", body: JSON.stringify(incomeFilterValues)
         });
         const APIdata = await response.json();
