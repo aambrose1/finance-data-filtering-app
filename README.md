@@ -19,5 +19,5 @@ TO RUN BACKEND:
 2. fastapi dev main.py
 
 TO RUN FRONT-END:
-1. Make sure you are in ~/front-end
+1. Make sure you are in ~/front-end/finance-app
 2. npm run dev
