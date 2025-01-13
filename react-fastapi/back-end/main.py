@@ -9,7 +9,7 @@ app = FastAPI()
 origins = [
     "https://127.0.0.1:8000",
     "http://localhost:5173" ,
-    "https://finance-data-filtering-app-mdk4.vercel.app/"
+    "https://finance-data-filtering-app-mdk4.vercel.app"
 ]
 
 app.add_middleware(
