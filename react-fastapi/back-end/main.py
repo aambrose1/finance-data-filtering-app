@@ -18,30 +18,30 @@ app.add_middleware(
     allow_methods = ["*"],
     allow_headers = ["*"]
 )
-
+#COMMENT IF ERR 429. API KEY REQUESTS ARE LIMITED
 # # List of dictionaries of data from 2021 to 2024
-API_URL = "https://financialmodelingprep.com/api/v3/income-statement/AAPL?period=annual&apikey="
-API_KEY = "UdVNPWNCQOUi2gCvEdB7tcT71kJDfnqw"
+# API_URL = "https://financialmodelingprep.com/api/v3/income-statement/AAPL?period=annual&apikey="
+# API_KEY = "UdVNPWNCQOUi2gCvEdB7tcT71kJDfnqw"
 
 async def fetch_data(request: Request):
     # UNCOMMENT IF ERR 429. API KEY REQUESTS ARE LIMITED.
-    # with open("AAPL-APIDATA.json") as f:
-    #     return json.load(f)
+    with open("AAPL-APIDATA.json") as f:
+         return json.load(f)
 
-    url = f"{API_URL}{API_KEY}"
+    # url = f"{API_URL}{API_KEY}"
 
-    try:
-        async with httpx.AsyncClient() as client:
-            response = await client.get(url)
-        if response.status_code == 200:
-            data = response.json()
-            return data #Dict
-        else:
-            raise HTTPException(status_code=response.status_code, detail=f"Failure fetching data")
+    # try:
+    #     async with httpx.AsyncClient() as client:
+    #         response = await client.get(url)
+    #     if response.status_code == 200:
+    #         data = response.json()
+    #         return data #Dict
+    #     else:
+    #         raise HTTPException(status_code=response.status_code, detail=f"Failure fetching data")
     
-    except Exception as e:
-        print(e)
-        raise HTTPException(status_code=500, detail="An internal error has occured.")
+    # except Exception as e:
+    #     print(e)
+    #     raise HTTPException(status_code=500, detail="An internal error has occured.")
 
 
 
