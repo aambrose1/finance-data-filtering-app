@@ -4,8 +4,7 @@
 ` cd react-fastapi/back-end ` <br>
 ` python -m venv .venv ` <br>
 ` call .venv/Scripts/activate  ` <br>
-` pip install fastapi httpx uvicorn `<br>
-` pip install "fastapi[standard] `<br>
+` pip install -r requirements.txt '
 ` cd react-fastapi/front-end/finance-app ` <br>
 ` npm install ` <br>
 ` npm install react-table ` <br>
