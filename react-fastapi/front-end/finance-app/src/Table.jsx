@@ -9,8 +9,10 @@ function Table() {
     const [revenueFilterValues, setRevenueFilterValues] = useState({min: 0, max: 999999999999999})
     const [incomeFilterValues, setIncomeFilterValues] = useState({min: 0, max: 999999999999999})
 
+    const BASE_URL = `http://127.0.0.1:8000`;
+
     const fetchData = async () => {
-		const response = await fetch("https://finance-data-filtering-app-mdk4.vercel.app/display_data/");
+		const response = await fetch(`${BASE_URL}/display_data/`);
 		const APIdata = await response.json();
 		setStatements(APIdata);
 	};
@@ -20,7 +22,7 @@ function Table() {
 	}, []);
 
     const handleClick = async (value) => {
-        const response = await fetch(`https://finance-data-filtering-app-mdk4.vercel.app/year/${value}`);
+        const response = await fetch(`${BASE_URL}/year/${value}`);
 		const APIdata = await response.json();
         setStatements(APIdata);
     }
@@ -45,14 +47,14 @@ function Table() {
 
     useEffect(() => {
         const filterFun = async () => {
-           const response = await fetch("https://finance-data-filtering-app-mdk4.vercel.app/filter_revenue/", {
+           const response = await fetch(`${BASE_URL}/filter_revenue/`, {
             method: "POST", body: JSON.stringify(revenueFilterValues)
         });
         const APIdata = await response.json();
         setStatements(APIdata); 
         }
         filterFun()
-    }, [revenueFilterValues])
+    }, [BASE_URL, revenueFilterValues])
 
     const handleIncomeFilterMin = async (min) => {
         setIncomeFilterValues((previousDict) => {
@@ -74,14 +76,14 @@ function Table() {
 
     useEffect(() => {
         const filterFun = async () => {
-           const response = await fetch("https://finance-data-filtering-app-mdk4.vercel.app/filter_income/", {
+           const response = await fetch(`${BASE_URL}/filter_income/`, {
             method: "POST", body: JSON.stringify(incomeFilterValues)
         });
         const APIdata = await response.json();
         setStatements(APIdata); 
         }
         filterFun()
-    }, [incomeFilterValues])
+    }, [BASE_URL, incomeFilterValues])
 
     const data = React.useMemo(() => statements, [statements])
     const columns = React.useMemo(() => [
@@ -114,25 +116,25 @@ function Table() {
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data }, useSortBy);
 
 	return (
-            <><div class=" px-6 pt-6 pb-2 rounded-xl shadow-lg">
-                <div class="font-sans-serif whitespace-pre-wrap">
+        <><div class="bg-neutral-50 px-6 pt-6 pb-2 rounded-xl shadow-lg">
+                <div class="font-sans-serif ">
                 <h1 class="text-4xl">Apple Inc.</h1>
                 <p class="italic">AAPL (United States: NASDAQ) </p>
                 <p>Annual Income Statements</p>
-                <span class="p-2 h-18 w-30 inline-block align-middle flex space-x-5 items-center justify-center">
-                    <button type="button" value="4" onClick={(e) => handleClick(e.target.value)} class="border-2 rounded-full hover:bg-slate-100"> 2020 </button>
-                    <button type="button" value="3" onClick={(e) => handleClick(e.target.value)}  class="border-2 rounded-full hover:bg-slate-100"> 2021 </button>
-                    <button type="button" value="2" onClick={(e) => handleClick(e.target.value)}  class="border-2 rounded-full hover:bg-slate-100"> 2022 </button>
-                    <button type="button" value="1" onClick={(e) => handleClick(e.target.value)}  class="border-2 rounded-full hover:bg-slate-100"> 2023 </button>
-                    <button type="button" value="0" onClick={(e) => handleClick(e.target.value)}  class="border-2 rounded-full hover:bg-slate-100"> 2024 </button>
+                <span class="space-x-5 flex justify-center">
+                    <button type="button" value="4" onClick={(e) => handleClick(e.target.value)} class="border-2 border-black rounded-full hover:bg-slate-300 p-1"> 2020 </button>
+                    <button type="button" value="3" onClick={(e) => handleClick(e.target.value)}  class="border-2 border-black rounded-full hover:bg-slate-300 p-1"> 2021 </button>
+                    <button type="button" value="2" onClick={(e) => handleClick(e.target.value)}  class="border-2 border-black rounded-full hover:bg-slate-300 p-1"> 2022 </button>
+                    <button type="button" value="1" onClick={(e) => handleClick(e.target.value)}  class="border-2 border-black rounded-full hover:bg-slate-300 p-1"> 2023 </button>
+                    <button type="button" value="0" onClick={(e) => handleClick(e.target.value)}  class="border-2 border-black rounded-full hover:bg-slate-300 p-1"> 2024 </button>
                 </span>
             </div>
-            <div class="relative overflow-x-auto w-full h-full">
+            <div>
                 <div class="">
                         <p>Filter by Revenue</p>
                         <div class="flex">
                         <input
-                            class="w-13 h-5 rounded"
+                            class="w-13 h-5 rounded border border-black"
                             size="15"
                             type="text"
                             placeholder="Min"
@@ -140,7 +142,7 @@ function Table() {
                         /> 
                         <p class="">-</p>
                         <input
-                            class="w-13 h-5 rounded"
+                            class="w-13 h-5 rounded border border-black"
                             size="15"
                             type="text"
                             placeholder="Max"
@@ -150,7 +152,7 @@ function Table() {
                      <p>Filter by Net Income</p>
                     <div class="flex">
                         <input
-                            class="w-13 h-5 rounded"
+                            class="w-13 h-5 rounded border border-black"
                             size="15"
                             type="text"
                             placeholder="Min"
@@ -158,7 +160,7 @@ function Table() {
                         /> 
                        <p class="">-</p>
                         <input
-                            class="w-13 h-5 rounded"
+                            class="w-13 h-5 rounded border border-black"
                             size="15"
                             type="text"
                             placeholder="Max"
@@ -166,7 +168,7 @@ function Table() {
                         /> 
                     </div>
                 </div>
-                    <table class=" mx-auto text-left text-slate-800 rounded border bg-white p-10" {...getTableProps()}>
+                    <table class=" mx-auto my-3 text-left text-slate-800 border-2 border-black bg-white table" {...getTableProps()}>
                         <thead class="text-s border">
                             {headerGroups.map((headerGroup) => (
                                 <tr class="text-slate-500 " {...headerGroup.getHeaderGroupProps()}>
@@ -199,8 +201,7 @@ function Table() {
                     </table>
                     <a href="/"><p class="my-2 italic text-xs uppercase hover:underline"> Refresh to restart </p></a>
                 </div>
-            </div>
-        </>
+        </div></>
 	);
 }
 
