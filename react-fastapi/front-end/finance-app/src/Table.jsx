@@ -9,7 +9,7 @@ function Table() {
     const [revenueFilterValues, setRevenueFilterValues] = useState({min: 0, max: 999999999999999})
     const [incomeFilterValues, setIncomeFilterValues] = useState({min: 0, max: 999999999999999})
 
-    const BASE_URL = `https://finance-data-filtering-app-mdk4.vercel.app/`;
+    const BASE_URL = `https://finance-data-filtering-app-mdk4.vercel.app`;
 
     const fetchData = async () => {
 		const response = await fetch(`${BASE_URL}/display_data/`);
