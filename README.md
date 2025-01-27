@@ -14,6 +14,8 @@ https://finance-data-filtering-app-byb2.vercel.app/
 ` npm install -D tailwindcss postcss autoprefixer` <br>
 ` npx tailwindcss init -p` <br>
 
+# Create a .env file and set your custom API_KEY. Get it from https://financialmodelingprep.com.
+
 Make sure your IDE is interpreting your selected environment.
 
 TO RUN BACKEND:
